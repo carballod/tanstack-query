@@ -1,4 +1,14 @@
 export const LabelPicker = () => {
+  const { labelsQuery } = useLabels();
+
+  if (labelsQuery.isLoading) {
+    return (
+      <div className="flex justify-center items-center h-52">
+        <LoadingSpinner />
+      </div>
+    );
+  }
+
   return (
     <>
       <span
