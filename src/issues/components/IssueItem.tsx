@@ -12,6 +12,8 @@ export const IssueItem = ({ issue }: Props) => {
   const navigate = useNavigate();
   const queryClient = useQueryClient();
 
+  // util cuando queremos pre-cargar datos, realiza la peticion y guarda en cache
+  // Hace 2 llamadas a la API y guarda resultados
   const prefetchData = () => {
     queryClient.prefetchQuery({
       queryKey: ["issue", issue.number],
@@ -26,9 +28,17 @@ export const IssueItem = ({ issue }: Props) => {
     });
   };
 
+  // util cuando ya tenemos los datos y los guardamos en cache
+  // Solo guarda el issue que ya tenes en memoria
+  const presetData = () => {
+    queryClient.setQueryData(["issue", issue.number], issue, {
+      updatedAt: Date.now() + 1000 * 60,
+    });
+  };
+
   return (
     <div
-      onMouseEnter={prefetchData}
+      onMouseEnter={presetData}
       className="animate-fade-in flex items-center px-2 py-3 mb-5 border rounded-md bg-slate-900 hover:bg-slate-800"
     >
       {issue.state === State.Close ? (
