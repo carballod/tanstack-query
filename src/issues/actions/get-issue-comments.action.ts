@@ -10,7 +10,6 @@ export const getIssueComments = async (
   const { data } = await githubApi.get<GithubIssue[]>(
     `/issues/${issueNumber}/comments`
   );
-  console.log(data);
 
   return data;
 };
