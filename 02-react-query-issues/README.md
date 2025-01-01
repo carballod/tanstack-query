@@ -1,5 +1,18 @@
-# React Query - Issues
+# GitHub Issues - TanStack Query
+
+Repositorio del proyecto del curso sobre TanStack Query con React
+
+## Dev
 
 1. Clonar repositorio
-2. Ejecutar ``` yarn install``` o ```npm install```
-3. Abrir el URL del proyecto
+2. Instalar dependencias `npm install`'
+3. Copiar el archivo .env.dist y renombrarlo a .env
+4. Iniciar servidor de desarrollo `npm run dev`
+
+## Tecnologías usadas
+
+- React
+- TanStack Query
+- TailwindCSS
+- React Router 6+
+- React Icons

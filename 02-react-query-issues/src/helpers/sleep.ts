@@ -1,9 +1,7 @@
-export const sleep = (seconds: number = 1): Promise<boolean> => {
-  return new Promise( (resolve) => {
-
-    setTimeout( () => {
-      resolve(true);
-    }, seconds * 1000);
-    
+export const sleep = (milliseconds: number) => {
+  return new Promise((r) => {
+    setTimeout(() => {
+      r(true);
+    }, milliseconds);
   });
 };
