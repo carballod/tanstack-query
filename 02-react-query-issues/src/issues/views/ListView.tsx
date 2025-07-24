@@ -7,7 +7,20 @@ import { State } from "../interfaces";
 
 export const ListView = () => {
   const [state, setState] = useState<State>(State.All);
-  const { issuesQuery } = useIssues();
+  const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
+
+  const { issuesQuery } = useIssues({
+    state: state,
+    selectedLabels: selectedLabels,
+  });
+
+  const onLabelSelected = (label: string) => {
+    if (selectedLabels.includes(label)) {
+      setSelectedLabels(selectedLabels.filter((l) => l !== label));
+    } else {
+      setSelectedLabels([...selectedLabels, label]);
+    }
+  };
 
   const issues = issuesQuery.data ?? [];
 
@@ -22,7 +35,10 @@ export const ListView = () => {
       </div>
 
       <div className="col-span-1 px-2">
-        <LabelPicker />
+        <LabelPicker
+          onLabelSelected={onLabelSelected}
+          selectedLabels={selectedLabels}
+        />
       </div>
     </div>
   );
